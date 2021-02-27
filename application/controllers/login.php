@@ -12,7 +12,7 @@ public function __construct()
 public function index()
  {
   $this->form_validation->set_rules('uname','User Name','required|alpha');
-  $this->form_validation->set_rules('pass','Password','required|max_length[12]');
+  $this->form_validation->set_rules('pass','Password','required|max_length[8]');
 $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
   if($this->form_validation->run())
   {
@@ -22,12 +22,12 @@ $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div
    $login_id=$this->loginmodel->isvalidate($uname,$pass);
    if($login_id)
    {
-       $this->session->set_userdata('id',$login_id);
+       $this->session->set_userdata('id',$login_id); //if vaidate then it stored on session ID
        return redirect('admin/welcome');
   }
    else
    {
-      $this->session->set_flashdata('Login_failed','Invalid Username/Password');
+      $this->session->set_flashdata('Login_failed','Invalid Username / Password');
       return redirect('login');
    }
 
@@ -35,7 +35,7 @@ $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div
   }
   else
   {
-   $this->load->view('Admin/Login');
+   $this->load->view('admin/Login');
   }
 
  }
@@ -46,8 +46,8 @@ public function sendemail()
   $this->form_validation->set_rules('password','Password','required|max_length[12]');
   $this->form_validation->set_rules('firstname','First Name','required|alpha');
   $this->form_validation->set_rules('lastname','last Name','required|alpha');
-  $this->form_validation->set_rules('email','Email','required|valid_email|is_unique[users.email]');
-$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+  $this->form_validation->set_rules('email','Email','required|valid_email|is_unique[users.email]'); //users is table name
+$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>'); //set colors for error nd by default it is red in color
   if($this->form_validation->run())
   {
         $post=$this->input->post(); 
@@ -62,7 +62,7 @@ $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div
         $this->session->set_flashdata('user','User not added Please try again!!');
         $this->session->set_flashdata('user_class','alert-danger');
       }
-      return redirect('users/register');
+      return redirect('login');
   //   $this->load->library('email');
   
   //   $this->email->from(set_value('email'),set_value('fname'));
@@ -82,7 +82,7 @@ $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div
     }
   else
   {
-   $this->load->view('Admin/register');
+   $this->load->view('admin/register');
   }
  }
 }

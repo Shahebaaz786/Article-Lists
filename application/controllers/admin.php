@@ -12,7 +12,7 @@ class admin extends MY_controller
 
   $config=[
         'base_url' => base_url('admin/welcome'),
-        'per_page' =>3,
+        'per_page' =>2,
         'total_rows' => $this->ar->num_rows(),
         'full_tag_open'=>"<ul class='pagination'>",
         'full_tag_close'=>"</ul>",
@@ -21,7 +21,7 @@ class admin extends MY_controller
         'prev_tag_open' =>"<li>",
         'prev_tag_close' =>"</li>",
         'num_tag_open' =>"<li>",
-        'num_tag_close' =>"<li>",
+        'num_tag_close' =>"</li>",
         'cur_tag_open' =>"<li class='active'><a>",
         'cur_tag_close' =>"</a></li>"
 
@@ -43,12 +43,27 @@ class admin extends MY_controller
  }
  public function userValidation()
  {
-
-  if($this->form_validation->run('add_article_rules'))
+$config=[
+'upload_path'=>'./upload/',
+'allowed_types'=>'gif|jpg|png',
+];
+               
+$this->load->library('upload',$config); //upload is a image uplaoding libaray
+  if($this->form_validation->run('add_article_rules') && $this->upload->do_upload()) //add_article_rules is declared config method
   {
-      $post=$this->input->post(); 
+      $post=$this->input->post(); //take all input of add articles
+     
+     $data=$this->upload->data();  //upload image by using data variable in $data method means uplaoded image is stred in $data method //means upload imafe in $data method
+
+   
+
+      $image_path=base_url("upload/".$data['raw_name'].$data['file_ext']);  //stored image by using there name and there extension in $image_path
+     
+        $post['image_path']=$image_path; //stored image by using there name in database in $post variable
+
+
       $this->load->model('loginmodel','useradd');
-      if($this->useradd->add_articles($post))
+      if($this->useradd->add_articles($post))  //add articles from $post method
       {
          $this->session->set_flashdata('msg','Articles added successfully');
           $this->session->set_flashdata('msg_class','alert-success');
@@ -62,17 +77,18 @@ class admin extends MY_controller
 }
   else
   {
-   $this->load->view('admin/add_article');
+  $upload_error=$this->upload->display_errors();
+  //if error is fiding then stored in $upload_error
+  $this->load->view('admin/add_article',compact('upload_error'));
+      //compact is a codeigniter php method which stored  error in a varible and display it
   }
 
  }
- 
  public function edituser($id)
  {
  $this->load->model('loginmodel');
  $article=$this->loginmodel->find_article($id);
  $this->load->view('admin/edit_article',['article'=>$article]);
-
  }
  public function updatearticle($article_id)
  {
@@ -82,7 +98,7 @@ if($this->form_validation->run('add_article_rules'))
       //$articleid=$post['article_id'];
       //unset($articleid);
       $this->load->model('loginmodel','editupdate');
-      if($this->editupdate->update_article($article_id,$post))
+      if($this->editupdate->update_article($article_id,$post)) //article_is is a column name
       {
          $this->session->set_flashdata('msg','Article Update successfully');
           $this->session->set_flashdata('msg_class','alert-success');
@@ -96,7 +112,7 @@ if($this->form_validation->run('add_article_rules'))
      }
   else
   {
-    $this->edituser($article_id);
+    $this->edituser($article_id); //if false then goes to the edit user method in admin controller (means this method) and $article_id is used for dending on perticular user by using the there id
   }
 
  }

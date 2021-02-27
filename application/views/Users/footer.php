@@ -3,7 +3,7 @@
 <script src="<?= base_url("Assets/js/bootstrap.js") ?>"></script>
 <div class="footer-copyright">
 <div class="container">
-  © 2018 Copyright: <a href="https://www.TP2K16.com"> TP2K16.com </a>
+  © 2020 Copyright: <a href="https://www.TP2K16.com"> Shahebaaz_Sn </a>
 </div>
 </div>
 </body>

@@ -1,20 +1,35 @@
 <html>
 <head>
 <title>Article List</title>
-<?= link_tag("Assets/css/bootstrap.min.css") ?>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Article List</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-default">
 
-  <div class="collapse navbar-collapse" id="navbarColor01">
-   
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" placeholder="Search" type="text">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
+  <div class="container-fluid">
+    <div class="navbar-header">
+    <a href="#" class="btn btn-primary" style="margin-top: 7px; margin-right: 12px;"> Shahebaaz_Sn</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li> 
+           <a class="navbar-brand" href="<?=  base_url('users/index'); ?>">Home</a> 
+      </li>
+  </ul>
+    <ul class="nav navbar-nav">
+     
+      <li class="active"><a class="nav-link" href="<?php echo base_url()?>export">User Feedback<span class="sr-only">(current)</span></a></li>
+      <li><a class="nav-link"  href="<?php echo base_url()?>Dynamic_dependent">Drop Down Demo</a></li>
+     <li class="active"><a class="nav-link"  href="<?php echo base_url()?>login">Admin Login</a></li>
+     <li class=""><a class="nav-link"  href="<?php echo base_url()?>welcome/index">Payment GateWay</a></li>
+     <li class="active"><a class="nav-link"  href="<?php echo base_url()?>info/shahebaazsn">Info<sup>n</sup>   of  My LapTop</a></li>
+      
+    </ul>
   </div>
+
+   
+  
 </nav>
+

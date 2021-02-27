@@ -3,8 +3,12 @@
 <div class="container" style="margin-top:20px;">
 <h1>Add Articles</h1>
 
- <?php echo form_open('admin/userValidation'); ?>
- <?php echo form_hidden('user_id',$this->session->userdata('id')); ?>
+ <?php echo form_open_multipart('admin/userValidation'); ?>
+ <?php echo form_hidden('user_id',$this->session->userdata('id'));
+  ?>
+<?php echo form_hidden('created_at',date('Y-m-d H:i:s')); //hidden can directly stored value in database
+  ?>
+
  <div class="row">
  <div class="col-lg-6">
   <div class="form-group">
@@ -26,6 +30,18 @@
    </div>
    <div class="col-lg-6" style="margin-top:40px;">
    <?php  echo form_error('article_body');  ?>
+  </div>
+   </div>
+   <div class="row">
+ <div class="col-lg-6">
+  <div class="form-group">
+    <label for="body">Select Image</label>
+  
+   <?php  echo form_upload(['name'=>'userfile']); ?>
+   </div>
+   </div>
+   <div class="col-lg-6" style="margin-top:40px;">
+   <?php if(isset($upload_error)) { echo $upload_error;  }  ?>
   </div>
    </div>
   <?php  echo form_submit(['type'=>'submit','class'=>'btn btn-default','value'=>'Submit']);  ?>

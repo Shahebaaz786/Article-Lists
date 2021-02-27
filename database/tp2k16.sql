@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2018 at 03:21 PM
+-- Generation Time: Jul 14, 2018 at 03:52 PM
 -- Server version: 5.7.9
 -- PHP Version: 5.6.16
 
@@ -32,23 +32,18 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `article_title` varchar(150) NOT NULL,
   `article_body` longtext NOT NULL,
   `user_id` int(11) NOT NULL,
+  `image_path` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `articles`
 --
 
-INSERT INTO `articles` (`id`, `article_title`, `article_body`, `user_id`) VALUES
-(9, 'Pdsf', 'Pdsf', 1),
-(18, 'vijay', 'sharma', 1),
-(12, 'article 4', 'Article Description', 1),
-(11, 'Article 3', 'Article Description', 1),
-(17, 'Article 8', 'nsdjlaljdlasjkdjsakljdklsajkdljsalkdjklasjdklsaj', 0),
-(13, 'Article 5', 'Article Description', 1),
-(14, 'Article 6', 'Article Description', 1),
-(15, 'xyz', 'xyz', 1),
-(16, 'sjadh', 'skjd', 1);
+INSERT INTO `articles` (`id`, `article_title`, `article_body`, `user_id`, `image_path`) VALUES
+(26, 'India vs England, Live Score 2nd ODI: England Captain Morgan Wins Toss, Opts To Bat ', 'ndia, riding high on confidence, will look to wrap up another series on their ongoing tour of the United Kingdom when they face England for the second One-day International at the Lord''s cricket ground on Saturday. ', 1, 'http://localhost/TP2K16/upload/8v9jpb6_india-toss-second-odi_625x300_14_July_18.jpg'),
+(25, 'GitHub Enterprise 2.14 is ‘open goodness’ behind an enterprise firewall', 'This latest version of the web-based code repository and version control system also of course now features collaborative functions, options for bug tracking and features related to task management — it is, a portal with many Wikis indeed.', 1, 'http://localhost/TP2K16/upload/git.png'),
+(27, 'Asia''s richest person: Reliance Jio founder Mukesh Ambani topples Jack Ma', 'Mukesh Ambani overtook Alibaba Group founder Jack Ma to become Asia’s richest person as he positions Reliance Industries Ltd. to disrupt the e-commerce space in India.', 1, 'http://localhost/TP2K16/upload/64978242_cms.jpg');
 
 -- --------------------------------------------------------
 

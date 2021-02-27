@@ -8,11 +8,11 @@ class loginmodel extends CI_Model
               
    //select * from users where username=$username and password=$password
         
-           if($q->num_rows())     
+           if($q->num_rows())     //true if 1 or more
            {
-           return $q->row()->id;
+           return $q->row()->id;  //return id in row
            }   
-           else
+           else  //false if value 0 or -1
            {
            	return false;
            }
@@ -45,6 +45,26 @@ class loginmodel extends CI_Model
            
            return $q->result();
   }
+
+
+
+
+
+
+ public function all_articleList($limit,$offset)
+  {
+
+   $query=$this->db->select()
+            ->from('articles')
+             ->limit($limit,$offset)
+            ->get();
+           
+           
+           return  $query->result();
+  }
+
+
+
   public function find_article($articleid)
   {
    $q=$this->db->select(['article_title','article_body','id'])
@@ -54,7 +74,7 @@ class loginmodel extends CI_Model
 
 
   }
-  public function update_article($articleid,Array $article)
+  public function update_article($articleid,Array $article) //array $aricle gives data from post method in admin controller
   {
     
    return $this->db->where('id',$articleid)
@@ -71,14 +91,23 @@ $id=$this->session->userdata('id');
            return $q->num_rows();
 
   }
+  public function all_articles_count()
+  {
+
+   $q=$this->db->select()
+            ->from('articles')
+            ->get();
+           return $q->num_rows();
+
+  }
   public function add_articles($array)
   {
-     return $this->db->insert('articles',$array);
+     return $this->db->insert('articles',$array);   //$array is a argument take from admin controller and //means it take all data from $post method in admin controller and stored it in database  by using this add_articles method.
   }
   public function add_user($array)
   {
     
-    return $this->db->insert('users',$array);
+    return $this->db->insert('users',$array);   //$array is a argument take from admin controller and //means it take all data from $post method in admin controller and stored it in database  by using this add_articles method.
   }
 
   public function del($id)

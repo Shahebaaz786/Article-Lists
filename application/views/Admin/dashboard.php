@@ -26,8 +26,8 @@ $msg_class=$this->session->flashdata('msg_class')
 
 </div>
 
-<?php echo $this->db->last_query(); ?>
-<div class="table">
+<!-- <?php echo $this->db->last_query(); ?> last query shows the last query wich we used-->
+<div class="table table-bordered">
 <table>
 <thead>
 <tr>
@@ -45,7 +45,7 @@ $msg_class=$this->session->flashdata('msg_class')
 <?php foreach ($articles as $art): ?>
 <tr>
 	   
-        <td><?=    ++$count; ?></td
+        <td><?=    ++$count; ?></td>
 		<td><?=  $art->article_title; ?></td>
 		<td><?=  $art->article_body; ?></td>
 		<td><?=  anchor("admin/edituser/{$art->id}",'Edit',['class'=>'btn btn-default']);  ?></td>
@@ -53,7 +53,7 @@ $msg_class=$this->session->flashdata('msg_class')
 		<td>
         <?=
         form_open('admin/delarticles'),
-        form_hidden('id',$art->id),
+        form_hidden('id',$art->id), //hidden field directly stoered value in database table
         form_submit(['name'=>'submit','value'=>'Delete','class'=>'btn btn-danger']),
         form_close();
 
@@ -74,10 +74,10 @@ $msg_class=$this->session->flashdata('msg_class')
 
 
 </table>
+</div>
 
 
 <?php  echo $this->pagination->create_links();   ?> 
-</div>
 
 
 
